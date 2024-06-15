@@ -1,0 +1,42 @@
+services:
+  affiliate:
+    image: ghcr.io/buddying-inc/webserver-amzn2:apache24-php81
+    platform: linux/amd64
+    container_name: affiliate
+    working_dir: /var/www/html
+    volumes:
+      - type: bind
+        source: ../www/affiliate
+        target: /var/www/html
+        read_only: false
+        consistency: delegated
+      - type: bind
+        source: localhost.conf
+        target: /etc/httpd/conf.d/00_localhost.conf
+        read_only: true
+    ports:
+      - "8080:80"
+    environment:
+      - PHP_XDEBUG=on
+      - COMPOSER_ALLOW_SUPERUSER=1
+
+  website:
+    image: ghcr.io/buddying-inc/webserver-amzn2:apache24-php81
+    platform: linux/amd64
+    container_name: website
+    working_dir: /var/www/html
+    volumes:
+      - type: bind
+        source: ../www/website
+        target: /var/www/html
+        read_only: false
+        consistency: delegated
+      - type: bind
+        source: localhost.conf
+        target: /etc/httpd/conf.d/00_localhost.conf
+        read_only: true
+    ports:
+      - "8081:80"
+    environment:
+      - PHP_XDEBUG=on
+      - COMPOSER_ALLOW_SUPERUSER=1
