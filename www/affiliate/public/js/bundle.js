@@ -1,4 +1,4 @@
-(function () {
+var affiliateJs = (function (exports) {
   'use strict';
 
   /*! js-cookie v3.0.5 | MIT */
@@ -141,4 +141,12 @@
     path: '/',
   });
 
-})();
+  function send (action, value) {
+    console.info('action', action);
+  }
+
+  exports.send = send;
+
+  return exports;
+
+})({});
