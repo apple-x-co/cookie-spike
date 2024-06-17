@@ -8,12 +8,14 @@ export default {
   context: 'window',
   output: [
     {
+      name: 'affiliateJs',
       file: '../../public/js/bundle.js',
-      format: 'esm',
+      format: 'iife',
     },
     {
+      name: 'affiliateJs',
       file: '../../public/js/bundle.min.js',
-      format: 'esm',
+      format: 'iife',
       plugins: [terser()],
     },
   ],
